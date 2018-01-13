@@ -2,7 +2,7 @@ from math import floor
 
 import numpy as np
 
-from src.board import utils as utils
+from src.board import validator as utils
 from src.element.element import Element
 
 
@@ -36,14 +36,12 @@ class Board:
 
     def ninth(self, row, col):
         utils.validate_ninth(row, col)
-        # TODO: Extract to Utils
         ninth_elements = self.board[(3 * row - 3):(3 * row), (3 * col - 3):(3 * col)]
         return [[e.value for e in row] for row in ninth_elements]
 
     def ninth_by_element(self, row, col):
         utils.validate_row(row)
         utils.validate_col(col)
-        # TODO: Extract to Utils
         ninth_row = floor((row - 1)/3) + 1
         ninth_col = floor((col - 1)/3) + 1
         return self.ninth(ninth_row, ninth_col)

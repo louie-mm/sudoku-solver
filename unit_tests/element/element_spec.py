@@ -1,6 +1,6 @@
 import unittest
 
-from src.element import utils
+from src.element import validator
 from src.element.element import Element
 from src.element.element_exception import ElementException
 
@@ -16,7 +16,7 @@ class WhenCreatingElement(unittest.TestCase):
     def test_is_mutable(self):
         mutable_element = Element(0)
         self.assertEqual(False,  mutable_element.is_immutable)
-        self.assertEqual(utils.cleared, mutable_element.value)
+        self.assertEqual(validator.cleared, mutable_element.value)
         self.assertEqual([1, 2, 3, 4, 5, 6, 7, 8, 9], mutable_element.possible_values)
 
     def test_raises_ElementException_when_out_of_bounds(self):
@@ -57,7 +57,7 @@ class WhenClearValue(unittest.TestCase):
         mutable_element.set_value(3)
         mutable_element.possible_values = []
         mutable_element.clear_value()
-        self.assertEqual(utils.cleared, mutable_element.value)
+        self.assertEqual(validator.cleared, mutable_element.value)
         self.assertEqual([1, 2, 3, 4, 5, 6, 7, 8, 9], mutable_element.possible_values)
         self.assertEqual(False, mutable_element.is_immutable)
 
